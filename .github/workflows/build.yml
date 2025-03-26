@@ -69,6 +69,12 @@ jobs:
         shell: bash
         run: |
           [[ "$(xcode-select -p)" == "${{ env.BUILD_XCODE_PATH }}"* ]] || sudo xcode-select -s "${{ env.BUILD_XCODE_PATH }}"
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.9'
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
       - name: Cache Sysroot
         id: cache-sysroot
         uses: osy/actions-cache@v3
